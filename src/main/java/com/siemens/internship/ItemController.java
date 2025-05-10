@@ -65,6 +65,6 @@ public class ItemController {
 
     @GetMapping("/process")
     public ResponseEntity<List<Item>> processItems() {
-        return new ResponseEntity<>(itemService.processItemsAsync(), HttpStatus.OK);
+        return new ResponseEntity<>(itemService.processItemsAsync().join(), HttpStatus.OK);         // join added to block and wait for processing all data before giving response (final result becomes List<Item> instead of CompletableFuture<List<Item>>
     }
 }
